@@ -1,35 +1,25 @@
-# You can remove 'version' on Compose v2+, but keeping it is harmless.
-version: "3.8"
-
+version: '3.8'
+ 
 services:
   flower-app-web:
-    image: mvnsakash/flower:latest
-    container_name: flower-app
-    restart: unless-stopped
+    image: suwetha07/flowerimage:latest
+    container_name: flowerimage
     ports:
-      - "3016:3015"                  # host:container
+      - "3016:3015"
     environment:
       - MONGO_URL=mongodb://mongo:27017/flowerdb
-      # If your app expects MONGODB_URI instead, use:
-      # - MONGODB_URI=mongodb://mongo:27017/flowerdb
-      # If it needs creds, use: mongodb://user:pass@mongo:27017/flowerdb?authSource=admin
     depends_on:
-      mongo:
-        condition: service_healthy   # waits for healthy DB
-
+      - mongo
+ 
   mongo:
-    image: mongo:7.0                 # pin a stable version
+    image: mongo:latest
     container_name: mongodb
-    restart: unless-stopped
     ports:
-      - "27017:27017"                # expose for local tools (optional in prod)
+      - "27017:27017"
     volumes:
-      - mongo-data:/data/db          # persist your data
-    healthcheck:
-      test: ["CMD-SHELL", "mongosh --eval 'db.runCommand({ ping: 1 })' || exit 1"]
-      interval: 5s
-      timeout: 10s
-      retries: 12
-
+      - mongo-data:/data/db
+ 
 volumes:
   mongo-data:
+
+ 
