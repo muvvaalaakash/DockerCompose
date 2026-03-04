@@ -5,19 +5,19 @@ services:
     image : mvnsakash/flower:latest
     container_name: flower-app
     ports:
-      -"3016:3015"
+      - "3016:3015"
   java-web-app:
     image: muralisocial123/transcation-image
     container_name: java-app 
     ports:
-      -"8081:8080"
+      - "8081:8080"
   cart-app:
     image: muralisocial123/ey-cart:v1.1.0
     container_name: ey-cart
     ports:
-      -"3001:3000"
+      - "3001:3000"
   fitness-app:
     image: muralisocial123/ust-practice-fitness:v1.1.0
     container_name: fitness-app
     ports:
-      -"5001:5000"
+      - "5001:5000"
